@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>📅 منظم الوقت - شهر الامتحان النهائي</title>
+    <title>منظم الوقت - شهر الامتحان النهائي</title>
     <style>
         :root {
-            --bg: #0f0f1a;
-            --surface: #1a1a2e;
-            --surface2: #222240;
-            --surface3: #2a2a4a;
-            --text: #e8e8f0;
-            --text2: #b0b0c8;
+            --bg: #000000;
+            --surface: #0a0a0a;
+            --surface2: #141414;
+            --surface3: #1e1e1e;
+            --text: #e6e6e6;
+            --text2: #9e9e9e;
             --gold: #f0c060;
             --gold2: #d4a030;
             --accent1: #ff6b6b;
@@ -22,8 +22,8 @@
             --accent6: #20c997;
             --accent7: #f06595;
             --accent8: #748ffc;
-            --border: #333355;
-            --shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+            --border: #2a2a2a;
+            --shadow: 0 4px 24px rgba(255, 255, 255, 0.03);
             --radius: 16px;
             --radius-sm: 10px;
             --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
@@ -41,9 +41,8 @@
             color: var(--text);
             min-height: 100vh;
             background-image:
-                radial-gradient(ellipse at 20% 20%, rgba(240, 192, 96, 0.06) 0%, transparent 55%),
-                radial-gradient(ellipse at 80% 70%, rgba(77, 171, 247, 0.05) 0%, transparent 55%),
-                radial-gradient(ellipse at 50% 50%, rgba(204, 93, 232, 0.04) 0%, transparent 60%);
+                radial-gradient(ellipse at 20% 20%, rgba(240, 192, 96, 0.04) 0%, transparent 55%),
+                radial-gradient(ellipse at 80% 70%, rgba(77, 171, 247, 0.03) 0%, transparent 55%);
             line-height: 1.6;
             overflow-x: hidden;
         }
@@ -62,7 +61,7 @@
             top: 0;
             z-index: 100;
             backdrop-filter: blur(16px);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.7);
         }
         .app-header .logo {
             display: flex;
@@ -74,7 +73,6 @@
             letter-spacing: -0.5px;
         }
         .app-header .logo .icon {
-            font-size: 2rem;
             animation: pulse-icon 2.5s ease-in-out infinite;
         }
         @keyframes pulse-icon {
@@ -83,7 +81,7 @@
                 transform: scale(1);
             }
             50% {
-                transform: scale(1.18);
+                transform: scale(1.12);
             }
         }
         .header-actions {
@@ -104,19 +102,19 @@
             transition: var(--transition);
             white-space: nowrap;
             font-family: inherit;
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            gap: 7px;
+            gap: 6px;
         }
         .btn:hover {
             background: var(--surface3);
             border-color: #555;
             transform: translateY(-2px);
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 6px 18px rgba(255, 255, 255, 0.02);
         }
         .btn-primary {
             background: linear-gradient(135deg, var(--gold), var(--gold2));
-            color: #1a1a1a;
+            color: #0a0a0a;
             border: none;
             font-weight: 700;
         }
@@ -135,22 +133,22 @@
             border-radius: 14px;
         }
         .btn-danger {
-            background: #3d1a1a;
-            border-color: #6b2020;
+            background: #1a0a0a;
+            border-color: #4a2020;
             color: #ff8888;
         }
         .btn-danger:hover {
-            background: #4d2020;
-            border-color: #8b3030;
+            background: #2a1010;
+            border-color: #6b3030;
         }
         .btn-success {
-            background: #1a3d2a;
-            border-color: #206b3a;
+            background: #0a1a0a;
+            border-color: #1a4a1a;
             color: #88ddaa;
         }
         .btn-success:hover {
-            background: #204d30;
-            border-color: #308b4a;
+            background: #102a10;
+            border-color: #2a6a2a;
         }
 
         /* ========== MAIN LAYOUT ========== */
@@ -174,14 +172,14 @@
         .stats-row {
             grid-column: 1 / -1;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
             gap: 14px;
         }
         .stat-card {
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: var(--radius);
-            padding: 18px 20px;
+            padding: 18px 16px;
             text-align: center;
             transition: var(--transition);
             position: relative;
@@ -190,7 +188,7 @@
         .stat-card:hover {
             transform: translateY(-3px);
             box-shadow: var(--shadow);
-            border-color: #555;
+            border-color: #444;
         }
         .stat-card .stat-value {
             font-size: 2.4rem;
@@ -218,10 +216,16 @@
         }
         .stat-card .stat-icon {
             position: absolute;
-            top: -12px;
-            left: -8px;
+            top: -8px;
+            left: -4px;
             font-size: 4rem;
-            opacity: 0.07;
+            opacity: 0.06;
+            pointer-events: none;
+        }
+        .stat-icon svg {
+            width: 4rem;
+            height: 4rem;
+            color: currentColor;
         }
 
         /* ========== CALENDAR SECTION ========== */
@@ -245,10 +249,6 @@
             color: var(--gold);
             letter-spacing: -0.5px;
         }
-        .calendar-nav .nav-btns {
-            display: flex;
-            gap: 6px;
-        }
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
@@ -260,7 +260,6 @@
             font-size: 0.85rem;
             color: var(--text2);
             padding: 8px 0;
-            letter-spacing: 0.5px;
         }
         .calendar-grid .day-cell {
             aspect-ratio: 1 / 1;
@@ -274,31 +273,30 @@
             transition: var(--transition);
             position: relative;
             border: 2px solid transparent;
-            min-width: 0;
             padding: 4px;
             font-weight: 600;
             font-size: 0.9rem;
         }
         .day-cell:hover {
             background: var(--surface3);
-            border-color: #555;
+            border-color: #444;
             transform: translateY(-2px);
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 14px rgba(255, 255, 255, 0.02);
         }
         .day-cell.today {
             border-color: var(--gold) !important;
-            box-shadow: 0 0 0 4px rgba(240, 192, 96, 0.15);
-            background: #2a2a18;
+            box-shadow: 0 0 0 4px rgba(240, 192, 96, 0.12);
+            background: #1a1a0a;
         }
         .day-cell.selected {
             border-color: #fff !important;
-            box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.08);
             background: var(--surface3);
             transform: scale(1.04);
             z-index: 2;
         }
         .day-cell.other-month {
-            opacity: 0.3;
+            opacity: 0.25;
             pointer-events: none;
         }
         .day-cell .day-num {
@@ -320,7 +318,7 @@
             flex-shrink: 0;
         }
         .day-cell.has-tasks {
-            background: #1e1e35;
+            background: #1a1a22;
         }
 
         /* ========== SIDEBAR ========== */
@@ -344,8 +342,10 @@
             align-items: center;
             gap: 8px;
         }
-        .panel h3 .emoji {
-            font-size: 1.4rem;
+        .panel h3 svg {
+            width: 1.4rem;
+            height: 1.4rem;
+            flex-shrink: 0;
         }
 
         /* Task Types */
@@ -353,7 +353,7 @@
             display: flex;
             flex-direction: column;
             gap: 8px;
-            max-height: 300px;
+            max-height: 260px;
             overflow-y: auto;
             padding-right: 4px;
         }
@@ -372,11 +372,11 @@
         }
         .task-type-item:hover {
             background: var(--surface3);
-            border-color: #555;
+            border-color: #444;
         }
         .task-type-item.active {
             border-color: #fff !important;
-            box-shadow: 0 0 12px rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.06);
         }
         .task-type-color {
             width: 18px;
@@ -393,7 +393,51 @@
             color: var(--text2);
         }
 
-        /* Selected Day Details */
+        /* Type Stats Panel */
+        .type-stats-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .type-stat-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.85rem;
+        }
+        .type-stat-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .type-stat-name {
+            width: 70px;
+            flex-shrink: 0;
+            text-align: right;
+            font-weight: 500;
+        }
+        .type-stat-numbers {
+            margin-right: auto;
+            font-size: 0.8rem;
+            color: var(--text2);
+            width: 60px;
+            text-align: left;
+        }
+        .type-stat-bar {
+            flex: 1;
+            height: 6px;
+            background: var(--surface3);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .type-stat-fill {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.4s ease;
+        }
+
+        /* Day Detail Panel */
         .day-detail-panel {
             grid-column: 1 / -1;
             background: var(--surface);
@@ -430,7 +474,7 @@
             flex-wrap: wrap;
         }
         .task-item:hover {
-            border-color: #444;
+            border-color: #333;
         }
         .task-item.completed {
             opacity: 0.55;
@@ -455,7 +499,7 @@
         .task-item.completed .task-check {
             background: var(--accent2);
             border-color: var(--accent2);
-            color: #fff;
+            color: #000;
         }
         .task-item .task-info {
             flex: 1;
@@ -491,11 +535,12 @@
             padding: 30px;
             font-size: 1rem;
         }
-        .empty-state .big-emoji {
-            font-size: 3rem;
+        .empty-state svg {
             display: block;
-            margin-bottom: 10px;
-            opacity: 0.6;
+            margin: 0 auto 10px;
+            width: 3.5rem;
+            height: 3.5rem;
+            opacity: 0.5;
         }
 
         /* Add Task Form */
@@ -628,13 +673,20 @@
     <!-- ==================== HEADER ==================== -->
     <header class="app-header">
         <div class="logo">
-            <span class="icon">📅</span>
+            <span class="icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+            </span>
             <span>منظّم الامتحان النهائي</span>
         </div>
         <div class="header-actions">
-            <button class="btn btn-sm" onclick="goToToday()" title="العودة لليوم">📍 اليوم</button>
-            <button class="btn btn-sm btn-danger" onclick="clearAllData()" title="حذف كل البيانات">🗑️ مسح الكل</button>
-            <button class="btn btn-sm btn-primary" onclick="exportData()">📥 تصدير البيانات</button>
+            <button class="btn btn-sm" onclick="goToToday()">📍 اليوم</button>
+            <button class="btn btn-sm btn-danger" onclick="clearAllData()">مسح الكل</button>
+            <button class="btn btn-sm btn-primary" onclick="exportData()">تصدير البيانات</button>
         </div>
     </header>
 
@@ -644,24 +696,32 @@
         <!-- ===== STATS ROW ===== -->
         <div class="stats-row" id="statsRow">
             <div class="stat-card accent-gold">
-                <span class="stat-icon">📋</span>
+                <span class="stat-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+                </span>
                 <div class="stat-value" id="statTotal">0</div>
                 <div class="stat-label">إجمالي المهام</div>
             </div>
             <div class="stat-card accent-green">
-                <span class="stat-icon">✅</span>
+                <span class="stat-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </span>
                 <div class="stat-value" id="statCompleted">0</div>
                 <div class="stat-label">مهام مكتملة</div>
             </div>
             <div class="stat-card accent-blue">
-                <span class="stat-icon">📊</span>
+                <span class="stat-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path><path d="M22 12A10 10 0 0 0 12 2v10z"></path></svg>
+                </span>
                 <div class="stat-value" id="statPercent">0%</div>
                 <div class="stat-label">نسبة الإنجاز</div>
             </div>
             <div class="stat-card accent-orange">
-                <span class="stat-icon">⏱️</span>
+                <span class="stat-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                </span>
                 <div class="stat-value" id="statHours">0</div>
-                <div class="stat-label">ساعات الدراسة المخطط لها</div>
+                <div class="stat-label">ساعات مخططة</div>
             </div>
         </div>
 
@@ -680,60 +740,78 @@
         <aside class="sidebar">
             <!-- Task Types -->
             <div class="panel">
-                <h3><span class="emoji">🏷️</span> أنواع المهام</h3>
+                <h3>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                    أنواع المهام
+                </h3>
                 <div class="task-type-list" id="taskTypeList"></div>
-                <button class="btn btn-sm btn-primary" style="margin-top:10px;width:100%;justify-content:center;" onclick="addCustomType()">➕ إضافة نوع مخصص</button>
+                <button class="btn btn-sm btn-primary" style="margin-top:10px;width:100%;justify-content:center;" onclick="addCustomType()">+ إضافة نوع مخصص</button>
                 <div class="progress-bar-wrap" style="margin-top:12px;">
                     <div class="progress-bar-fill" id="globalProgressBar" style="width:0%;"></div>
                 </div>
                 <small style="color:var(--text2);">التقدم الكلي للشهر</small>
             </div>
 
+            <!-- Type Statistics Panel -->
+            <div class="panel" id="typeStatsPanelWrapper">
+                <h3>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                    إحصائيات حسب النوع
+                </h3>
+                <div class="type-stats-list" id="typeStatsList"></div>
+            </div>
+
             <!-- Pomodoro -->
             <div class="panel pomodoro-panel">
-                <h3><span class="emoji">🍅</span> مؤقت بومودورو</h3>
+                <h3>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    مؤقت بومودورو
+                </h3>
                 <div class="timer-label" id="timerLabel">وقت المذاكرة</div>
                 <div class="timer-display" id="timerDisplay">25:00</div>
                 <div class="timer-controls">
                     <button class="btn btn-sm btn-success" id="timerStartBtn" onclick="toggleTimer()">▶ بدء</button>
                     <button class="btn btn-sm" onclick="resetTimer()">🔄 إعادة</button>
-                    <button class="btn btn-sm" onclick="setTimerMode('study')">📖 دراسة 25د</button>
-                    <button class="btn btn-sm" onclick="setTimerMode('break')">☕ راحة 5د</button>
+                    <button class="btn btn-sm" onclick="setTimerMode('study')">دراسة 25د</button>
+                    <button class="btn btn-sm" onclick="setTimerMode('break')">راحة 5د</button>
                 </div>
             </div>
         </aside>
 
         <!-- ===== DAY DETAIL PANEL ===== -->
         <div class="day-detail-panel" id="dayDetailPanel">
-            <h3>📋 <span id="selectedDayTitle">اختر يوماً من التقويم</span></h3>
+            <h3>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                <span id="selectedDayTitle">اختر يوماً من التقويم</span>
+            </h3>
             <div class="task-list" id="taskList">
                 <div class="empty-state">
-                    <span class="big-emoji">📭</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
                     اختر يوماً من التقويم لعرض وإضافة المهام
                 </div>
             </div>
             <div class="add-task-form" id="addTaskForm" style="display:none;">
-                <input type="text" id="taskTitleInput" placeholder="✏️ عنوان المهمة...">
+                <input type="text" id="taskTitleInput" placeholder="عنوان المهمة...">
                 <select id="taskTypeSelect"></select>
-                <input type="number" id="taskHoursInput" placeholder="⏱ الساعات" min="0.5" max="12" step="0.5" value="1" style="max-width:90px;">
-                <button class="btn btn-primary btn-sm" onclick="addTask()">➕ إضافة</button>
+                <input type="number" id="taskHoursInput" placeholder="الساعات" min="0.5" max="12" step="0.5" value="1" style="max-width:90px;">
+                <button class="btn btn-primary btn-sm" onclick="addTask()">+ إضافة</button>
             </div>
         </div>
     </div>
 
     <script>
         // ==================== DATA & STATE ====================
-        const STORAGE_KEY = 'exam_planner_data_v2';
+        const STORAGE_KEY = 'exam_planner_data_v2_amoled';
         const DEFAULT_TASK_TYPES = [
-            { id: 'study', name: '📖 مذاكرة مادة جديدة', color: '#4dabf7' },
-            { id: 'review', name: '🔄 مراجعة', color: '#51cf66' },
-            { id: 'exercises', name: '✏️ حل تمارين', color: '#ff922b' },
-            { id: 'exam_sim', name: '📝 امتحان تجريبي', color: '#ff6b6b' },
-            { id: 'summary', name: '📋 تلخيص', color: '#cc5de8' },
-            { id: 'reading', name: '📚 قراءة', color: '#20c997' },
-            { id: 'project', name: '🔬 مشروع / بحث', color: '#f06595' },
-            { id: 'break', name: '☕ راحة', color: '#748ffc' },
-            { id: 'other', name: '📌 أخرى', color: '#adb5bd' },
+            { id: 'study', name: 'مذاكرة مادة جديدة', color: '#4dabf7' },
+            { id: 'review', name: 'مراجعة', color: '#51cf66' },
+            { id: 'exercises', name: 'حل تمارين', color: '#ff922b' },
+            { id: 'exam_sim', name: 'امتحان تجريبي', color: '#ff6b6b' },
+            { id: 'summary', name: 'تلخيص', color: '#cc5de8' },
+            { id: 'reading', name: 'قراءة', color: '#20c997' },
+            { id: 'project', name: 'مشروع / بحث', color: '#f06595' },
+            { id: 'break', name: 'راحة', color: '#748ffc' },
+            { id: 'other', name: 'أخرى', color: '#adb5bd' },
         ];
 
         let appData = {
@@ -796,7 +874,6 @@
         function renderCalendar() {
             const grid = document.getElementById('calendarGrid');
             const monthTitle = document.getElementById('monthTitle');
-
             const monthNames = [
                 'يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو',
                 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'
@@ -809,19 +886,16 @@
             const firstDay = new Date(currentYear, currentMonth - 1, 1);
             const lastDay = new Date(currentYear, currentMonth, 0);
             const daysInMonth = lastDay.getDate();
-            const startDayOfWeek = firstDay.getDay(); // 0=Sun
+            const startDayOfWeek = firstDay.getDay();
 
-            // Previous month filler
             const prevMonthLastDay = new Date(currentYear, currentMonth - 1, 0).getDate();
             for (let i = startDayOfWeek - 1; i >= 0; i--) {
                 const day = prevMonthLastDay - i;
                 const m = currentMonth === 1 ? 12 : currentMonth - 1;
                 const y = currentMonth === 1 ? currentYear - 1 : currentYear;
-                const dk = getDateKey(y, m, day);
                 html += `<div class="day-cell other-month"><span class="day-num">${day}</span></div>`;
             }
 
-            // Current month days
             const today = new Date();
             const todayKey = getDateKey(today.getFullYear(), today.getMonth() + 1, today.getDate());
 
@@ -837,7 +911,6 @@
                 if (isToday) classes += ' today';
                 if (isSelected) classes += ' selected';
 
-                // Build task dots
                 let dotsHtml = '';
                 if (hasTasks) {
                     const uniqueTypes = [...new Set(tasks.map(t => t.typeId))];
@@ -845,11 +918,9 @@
                         uniqueTypes.slice(0, 5).map(tid => {
                             const tt = appData.taskTypes.find(t => t.id === tid);
                             const color = tt ? tt.color : '#888';
-                            return `<span class="task-dot" style="background:${color};" title="${tt?tt.name:''}"></span>`;
+                            return `<span class="task-dot" style="background:${color};" title="${tt? tt.name : ''}"></span>`;
                         }).join('') +
-                        (uniqueTypes.length > 5 ?
-                            `<span style="font-size:0.5rem;color:#aaa;">+${uniqueTypes.length-5}</span>` :
-                            '') +
+                        (uniqueTypes.length > 5 ? `<span style="font-size:0.5rem;color:#aaa;">+${uniqueTypes.length-5}</span>` : '') +
                         '</div>';
                 }
 
@@ -860,18 +931,14 @@
                 </div>`;
             }
 
-            // Next month filler
             const remainingCells = 42 - (startDayOfWeek + daysInMonth);
             for (let day = 1; day <= remainingCells; day++) {
                 const m = currentMonth === 12 ? 1 : currentMonth + 1;
                 const y = currentMonth === 12 ? currentYear + 1 : currentYear;
-                html +=
-                    `<div class="day-cell other-month"><span class="day-num">${day}</span></div>`;
+                html += `<div class="day-cell other-month"><span class="day-num">${day}</span></div>`;
             }
 
             grid.innerHTML = html;
-
-            // Update legend
             renderLegend();
         }
 
@@ -879,15 +946,13 @@
             const container = document.getElementById('legendContainer');
             let html = '<span style="font-size:0.8rem;color:var(--text2);">أنواع المهام:</span>';
             appData.taskTypes.forEach(tt => {
-                html +=
-                    `<span style="display:inline-flex;align-items:center;gap:4px;font-size:0.75rem;padding:3px 10px;background:var(--surface2);border-radius:12px;cursor:pointer;" 
-                onclick="filterByType('${tt.id}')" title="تصفية حسب: ${tt.name}">
-                <span style="width:10px;height:10px;border-radius:50%;background:${tt.color};display:inline-block;"></span>${tt.name}
+                html += `<span style="display:inline-flex;align-items:center;gap:4px;font-size:0.75rem;padding:3px 10px;background:var(--surface2);border-radius:12px;cursor:pointer;" 
+                    onclick="filterByType('${tt.id}')" title="تصفية حسب: ${tt.name}">
+                    <span style="width:10px;height:10px;border-radius:50%;background:${tt.color};display:inline-block;"></span>${tt.name}
                 </span>`;
             });
             if (activeTypeFilter) {
-                html +=
-                    `<button class="btn btn-xs" onclick="clearTypeFilter()" style="margin-right:4px;">❌ إلغاء التصفية</button>`;
+                html += `<button class="btn btn-xs" onclick="clearTypeFilter()" style="margin-right:4px;">✕ إلغاء التصفية</button>`;
             }
             container.innerHTML = html;
         }
@@ -933,11 +998,9 @@
         // ==================== DAY DETAIL PANEL ====================
         function selectDate(dateKey) {
             selectedDate = dateKey;
-            // Update calendar selection
             document.querySelectorAll('.day-cell').forEach(el => el.classList.remove('selected'));
             const targetEl = document.querySelector(`.day-cell[data-date="${dateKey}"]`);
             if (targetEl) targetEl.classList.add('selected');
-
             updateDayDetailPanel();
         }
 
@@ -947,15 +1010,15 @@
             const addForm = document.getElementById('addTaskForm');
             const typeSelect = document.getElementById('taskTypeSelect');
 
-            // Populate type select
             typeSelect.innerHTML = appData.taskTypes.map(tt =>
                 `<option value="${tt.id}">${tt.name}</option>`
             ).join('');
 
             if (!selectedDate) {
                 titleEl.textContent = 'اختر يوماً من التقويم';
-                taskListEl.innerHTML =
-                    '<div class="empty-state"><span class="big-emoji">📭</span>اختر يوماً من التقويم لعرض وإضافة المهام</div>';
+                taskListEl.innerHTML = `<div class="empty-state">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+                    اختر يوماً من التقويم لعرض وإضافة المهام</div>`;
                 addForm.style.display = 'none';
                 return;
             }
@@ -970,8 +1033,6 @@
             titleEl.textContent = `المهام ليوم ${dayNum} ${monthName} ${parts[0]}`;
 
             let tasks = getTasksForDate(selectedDate);
-
-            // Apply type filter
             if (activeTypeFilter) {
                 tasks = tasks.filter(t => t.typeId === activeTypeFilter);
             }
@@ -979,8 +1040,9 @@
             addForm.style.display = 'flex';
 
             if (tasks.length === 0) {
-                taskListEl.innerHTML =
-                    '<div class="empty-state"><span class="big-emoji">✨</span>لا توجد مهام لهذا اليوم. أضف مهمة جديدة!</div>';
+                taskListEl.innerHTML = `<div class="empty-state">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"></circle><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                    لا توجد مهام لهذا اليوم. أضف مهمة جديدة!</div>`;
             } else {
                 taskListEl.innerHTML = tasks.map((task, idx) => {
                     const tt = appData.taskTypes.find(t => t.id === task.typeId);
@@ -997,7 +1059,7 @@
                         </div>
                         <span class="task-type-badge" style="background:${typeColor};">${typeName}</span>
                         ${task.hours ? `<span class="task-time-badge">⏱ ${task.hours}h</span>` : ''}
-                        <button class="btn btn-xs btn-danger" onclick="deleteTask('${selectedDate}', ${idx})" title="حذف">🗑️</button>
+                        <button class="btn btn-xs btn-danger" onclick="deleteTask('${selectedDate}', ${idx})" title="حذف">✕</button>
                     </div>`;
                 }).join('');
             }
@@ -1072,19 +1134,29 @@
             let totalTasks = 0;
             let completedTasks = 0;
             let totalHours = 0;
+            const typeStatsData = {}; // typeId -> { total, completed, color, name }
 
-            // Count tasks in current month view (or all if we want)
+            // Initialize for all types
+            appData.taskTypes.forEach(tt => {
+                typeStatsData[tt.id] = { total: 0, completed: 0, color: tt.color, name: tt.name };
+            });
+
             const allDateKeys = Object.keys(appData.tasks);
             allDateKeys.forEach(dk => {
-                const tasks = appData.tasks[dk];
-                // Check if this date belongs to current month view
                 const parts = dk.split('-');
                 const y = parseInt(parts[0]);
                 const m = parseInt(parts[1]);
                 if (y === currentYear && m === currentMonth) {
+                    const tasks = appData.tasks[dk];
                     totalTasks += tasks.length;
                     completedTasks += tasks.filter(t => t.completed).length;
                     totalHours += tasks.reduce((sum, t) => sum + (t.hours || 0), 0);
+                    tasks.forEach(t => {
+                        if (typeStatsData[t.typeId]) {
+                            typeStatsData[t.typeId].total++;
+                            if (t.completed) typeStatsData[t.typeId].completed++;
+                        }
+                    });
                 }
             });
 
@@ -1094,18 +1166,39 @@
             document.getElementById('statPercent').textContent = percent + '%';
             document.getElementById('statHours').textContent = totalHours.toFixed(1);
 
-            // Update global progress bar
             document.getElementById('globalProgressBar').style.width = percent + '%';
             if (percent >= 80) {
-                document.getElementById('globalProgressBar').style.background =
-                    'linear-gradient(90deg, #51cf66, #3ddc84)';
+                document.getElementById('globalProgressBar').style.background = 'linear-gradient(90deg, #51cf66, #3ddc84)';
             } else if (percent >= 40) {
-                document.getElementById('globalProgressBar').style.background =
-                    'linear-gradient(90deg, #ff922b, #f0c060)';
+                document.getElementById('globalProgressBar').style.background = 'linear-gradient(90deg, #ff922b, #f0c060)';
             } else {
-                document.getElementById('globalProgressBar').style.background =
-                    'linear-gradient(90deg, #ff6b6b, #ff922b)';
+                document.getElementById('globalProgressBar').style.background = 'linear-gradient(90deg, #ff6b6b, #ff922b)';
             }
+
+            renderTypeStats(typeStatsData);
+        }
+
+        function renderTypeStats(typeStatsData) {
+            const container = document.getElementById('typeStatsList');
+            if (!container) return;
+            const types = appData.taskTypes.filter(tt => typeStatsData[tt.id] && typeStatsData[tt.id].total > 0);
+            if (types.length === 0) {
+                container.innerHTML = '<div style="color:var(--text2);text-align:center;padding:8px;">لا توجد بيانات للعرض</div>';
+                return;
+            }
+            container.innerHTML = types.map(tt => {
+                const data = typeStatsData[tt.id];
+                const percent = data.total > 0 ? Math.round((data.completed / data.total) * 100) : 0;
+                return `
+                <div class="type-stat-item">
+                    <span class="type-stat-color" style="background:${data.color};"></span>
+                    <span class="type-stat-name">${data.name}</span>
+                    <span class="type-stat-numbers">${data.completed}/${data.total}</span>
+                    <div class="type-stat-bar">
+                        <div class="type-stat-fill" style="width:${percent}%; background:${data.color};"></div>
+                    </div>
+                </div>`;
+            }).join('');
         }
 
         // ==================== TASK TYPES ====================
@@ -1134,9 +1227,9 @@
         }
 
         function addCustomType() {
-            const name = prompt('🏷️ أدخل اسم النوع الجديد:');
+            const name = prompt('أدخل اسم النوع الجديد:');
             if (!name || !name.trim()) return;
-            const color = prompt('🎨 أدخل لون النوع (مثل: #ff5733 أو اسم اللون):', '#ff5733');
+            const color = prompt('أدخل لون النوع (مثل: #ff5733):', '#ff5733');
             if (!color || !color.trim()) return;
             appData.customTypeCounter++;
             const newType = {
@@ -1149,13 +1242,12 @@
             renderTaskTypes();
             renderCalendar();
             if (selectedDate) updateDayDetailPanel();
+            updateStats();
         }
 
         function removeCustomType(typeId) {
-            if (!confirm('🗑️ هل أنت متأكد من حذف هذا النوع؟ المهام المرتبطة به ستبقى ولكن بدون نوع.')) return;
-            // Remove type
+            if (!confirm('هل أنت متأكد من حذف هذا النوع؟ المهام المرتبطة به ستبقى ولكن بدون نوع.')) return;
             appData.taskTypes = appData.taskTypes.filter(t => t.id !== typeId);
-            // Optionally reassign tasks of this type to 'other'
             Object.keys(appData.tasks).forEach(dk => {
                 appData.tasks[dk].forEach(task => {
                     if (task.typeId === typeId) task.typeId = 'other';
@@ -1176,7 +1268,7 @@
             document.getElementById('timerDisplay').textContent =
                 `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
             document.getElementById('timerLabel').textContent =
-                timerMode === 'study' ? '📖 وقت المذاكرة' : '☕ وقت الراحة';
+                timerMode === 'study' ? 'وقت المذاكرة' : 'وقت الراحة';
             document.getElementById('timerDisplay').style.color =
                 timerMode === 'study' ? 'var(--accent4)' : 'var(--accent2)';
         }
@@ -1184,46 +1276,40 @@
         function toggleTimer() {
             const btn = document.getElementById('timerStartBtn');
             if (timerRunning) {
-                // Pause
                 clearInterval(timerInterval);
                 timerRunning = false;
                 btn.textContent = '▶ استئناف';
                 btn.classList.remove('btn-danger');
                 btn.classList.add('btn-success');
             } else {
-                // Start
                 timerInterval = setInterval(() => {
                     if (timerSeconds > 0) {
                         timerSeconds--;
                         updateTimerDisplay();
                     } else {
-                        // Timer finished
                         clearInterval(timerInterval);
                         timerRunning = false;
                         const btn2 = document.getElementById('timerStartBtn');
                         btn2.textContent = '▶ بدء';
                         btn2.classList.remove('btn-danger');
                         btn2.classList.add('btn-success');
-                        // Alert
                         const msg = timerMode === 'study' ?
-                            '🍅 انتهى وقت المذاكرة! خذ استراحة 5 دقائق.' :
-                            '☕ انتهت الاستراحة! عد للمذاكرة.';
+                            'انتهى وقت المذاكرة! خذ استراحة 5 دقائق.' :
+                            'انتهت الاستراحة! عد للمذاكرة.';
                         if (Notification.permission === 'granted') {
-                            new Notification('⏰ منظم الوقت', { body: msg });
+                            new Notification('منظم الوقت', { body: msg });
                         }
                         alert(msg);
-                        // Auto switch mode
                         if (timerMode === 'study') {
                             setTimerMode('break');
                         } else {
                             setTimerMode('study');
                         }
-                        // Auto start
                         toggleTimer();
                     }
                 }, 1000);
                 timerRunning = true;
-                btn.textContent = '⏸ إيقاف مؤقت';
+                btn.textContent = '⏸ إيقاف';
                 btn.classList.remove('btn-success');
                 btn.classList.add('btn-danger');
             }
@@ -1251,14 +1337,12 @@
             btn.classList.remove('btn-danger');
             btn.classList.add('btn-success');
             document.getElementById('timerLabel').textContent =
-                mode === 'study' ? '📖 وقت المذاكرة' : '☕ وقت الراحة';
+                mode === 'study' ? 'وقت المذاكرة' : 'وقت الراحة';
         }
 
         // ==================== UTILS ====================
         function clearAllData() {
-            if (!confirm(
-                    '⚠️ هل أنت متأكد من مسح جميع البيانات؟\n\nسيتم حذف كل المهام والأنواع المخصصة. هذا الإجراء لا يمكن التراجع عنه.'
-                    )) return;
+            if (!confirm('⚠️ هل أنت متأكد من مسح جميع البيانات؟\n\nسيتم حذف كل المهام والأنواع المخصصة. هذا الإجراء لا يمكن التراجع عنه.')) return;
             if (!confirm('تأكيد نهائي: هل تريد حقاً مسح كل شيء؟')) return;
             appData.tasks = {};
             appData.taskTypes = [...DEFAULT_TASK_TYPES];
@@ -1278,8 +1362,7 @@
                 data: appData,
                 summary: {
                     totalTasks: Object.values(appData.tasks).reduce((s, arr) => s + arr.length, 0),
-                    completedTasks: Object.values(appData.tasks).reduce((s, arr) => s + arr.filter(t => t
-                        .completed).length, 0),
+                    completedTasks: Object.values(appData.tasks).reduce((s, arr) => s + arr.filter(t => t.completed).length, 0),
                     totalDates: Object.keys(appData.tasks).length,
                 }
             };
@@ -1292,24 +1375,19 @@
             a.click();
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
-            alert('✅ تم تصدير البيانات بنجاح!');
+            alert('تم تصدير البيانات بنجاح!');
         }
 
-        // Request notification permission
         function requestNotificationPermission() {
             if ('Notification' in window && Notification.permission === 'default') {
                 Notification.requestPermission();
             }
         }
 
-        // ==================== KEYBOARD SHORTCUTS ====================
         function handleKeyboard(e) {
-            // Ctrl+Enter to add task from input
-            if (e.ctrlKey && e.key === 'Enter' && selectedDate && document.getElementById('taskTitleInput') ===
-                document.activeElement) {
+            if (e.ctrlKey && e.key === 'Enter' && selectedDate && document.getElementById('taskTitleInput') === document.activeElement) {
                 addTask();
             }
-            // Escape to clear filter
             if (e.key === 'Escape' && activeTypeFilter) {
                 clearTypeFilter();
             }
@@ -1325,21 +1403,13 @@
             updateStats();
             updateTimerDisplay();
             document.addEventListener('keydown', handleKeyboard);
-
-            // Also add Enter key support for the task input
             document.getElementById('taskTitleInput').addEventListener('keydown', function(e) {
                 if (e.key === 'Enter') {
                     e.preventDefault();
                     addTask();
                 }
             });
-
-            console.log('✅ منظم الوقت جاهز! 🚀');
-            console.log('📅 الشهر الحالي:', currentMonth, '/', currentYear);
-            console.log('💾 البيانات محفوظة في LocalStorage بمفتاح:', STORAGE_KEY);
-            console.log('🖱️ اختر يوماً من التقويم لبدء إضافة المهام');
-            console.log('🍅 مؤقت بومودورو جاهز للاستخدام');
-            console.log('⌨️ اختصارات: Ctrl+Enter لإضافة مهمة | Escape لإلغاء التصفية');
+            console.log('منظم الوقت AMOLED جاهز!');
         }
 
         init();
