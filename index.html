@@ -1,715 +1,561 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>جدول المراجعة - الامتحان النهائي</title>
-    <style>
-        :root {
-            --bg: #000000;
-            --surface: #0a0a0a;
-            --surface2: #141414;
-            --surface3: #1e1e1e;
-            --text: #e6e6e6;
-            --text2: #9e9e9e;
-            --gold: #f0c060;
-            --gold2: #d4a030;
-            --accent1: #ff6b6b;
-            --accent2: #51cf66;
-            --accent3: #4dabf7;
-            --accent4: #ff922b;
-            --accent5: #cc5de8;
-            --accent6: #20c997;
-            --accent7: #f06595;
-            --accent8: #748ffc;
-            --border: #2a2a2a;
-            --shadow: 0 4px 24px rgba(255, 255, 255, 0.03);
-            --radius: 16px;
-            --radius-sm: 10px;
-            --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>جدول المراجعة – الامتحان النهائي</title>
+  <style>
+    :root {
+      --bg: #000;
+      --surface: #0a0a0a;
+      --surface2: #141414;
+      --surface3: #1e1e1e;
+      --text: #e6e6e6;
+      --text2: #9e9e9e;
+      --gold: #f0c060;
+      --gold2: #d4a030;
+      --accent1: #ff6b6b;
+      --accent2: #51cf66;
+      --accent3: #4dabf7;
+      --accent4: #ff922b;
+      --accent5: #cc5de8;
+      --border: #2a2a2a;
+      --radius: 16px;
+      --radius-sm: 10px;
+      --transition: 0.2s ease;
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        body {
-            font-family: 'Segoe UI', 'Tajawal', 'Cairo', 'Almarai', sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            min-height: 100vh;
-            background-image: radial-gradient(ellipse at 20% 20%, rgba(240, 192, 96, 0.04) 0%, transparent 55%),
-                radial-gradient(ellipse at 80% 70%, rgba(77, 171, 247, 0.03) 0%, transparent 55%);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+    body {
+      font-family: 'Segoe UI', 'Tajawal', 'Cairo', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
 
-        .app-header {
-            background: var(--surface);
-            border-bottom: 1px solid var(--border);
-            padding: 16px 28px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 16px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--gold);
-        }
-        .logo svg {
-            width: 28px;
-            height: 28px;
-        }
-        .btn {
-            padding: 10px 18px;
-            border-radius: 30px;
-            border: 1px solid var(--border);
-            background: var(--surface2);
-            color: var(--text);
-            cursor: pointer;
-            font-size: 0.95rem;
-            font-weight: 600;
-            transition: var(--transition);
-            white-space: nowrap;
-            font-family: inherit;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .btn:hover {
-            background: var(--surface3);
-            border-color: #555;
-            transform: translateY(-2px);
-        }
-        .btn-primary {
-            background: linear-gradient(135deg, var(--gold), var(--gold2));
-            color: #0a0a0a;
-            border: none;
-        }
-        .btn-sm {
-            padding: 6px 13px;
-            font-size: 0.82rem;
-            border-radius: 20px;
-        }
-        .btn-xs {
-            padding: 3px 10px;
-            font-size: 0.72rem;
-            border-radius: 14px;
-        }
-        .btn-danger {
-            background: #1a0a0a;
-            border-color: #4a2020;
-            color: #ff8888;
-        }
+    .app-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .logo { display: flex; align-items: center; gap: 12px; font-size: 1.5rem; font-weight: 800; color: var(--gold); }
+    .logo svg { width: 28px; height: 28px; stroke: currentColor; }
 
-        .main-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 20px 24px;
-            display: grid;
-            grid-template-columns: 1fr 340px;
-            grid-template-rows: auto auto;
-            gap: 20px;
-        }
-        @media (max-width: 1100px) {
-            .main-container {
-                grid-template-columns: 1fr;
-            }
-        }
+    .btn {
+      padding: 10px 18px;
+      border-radius: 30px;
+      border: 1px solid var(--border);
+      background: var(--surface2);
+      color: var(--text);
+      cursor: pointer;
+      font-weight: 600;
+      font-family: inherit;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn:hover { background: var(--surface3); border-color: #555; transform: translateY(-1px); }
+    .btn-primary { background: linear-gradient(135deg, var(--gold), var(--gold2)); color: #0a0a0a; border: none; }
+    .btn-danger { background: #1a0a0a; border-color: #4a2020; color: #ff8888; }
+    .btn-danger:hover { background: #2a1010; }
+    .btn-sm { padding: 6px 13px; font-size: 0.82rem; border-radius: 20px; }
+    .btn-xs { padding: 3px 8px; font-size: 0.72rem; border-radius: 14px; }
 
-        .stats-row {
-            grid-column: 1 / -1;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 14px;
-        }
-        .stat-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 18px 16px;
-            text-align: center;
-            transition: var(--transition);
-        }
-        .stat-card .stat-value {
-            font-size: 2.2rem;
-            font-weight: 800;
-        }
-        .stat-card .stat-label {
-            font-size: 0.85rem;
-            color: var(--text2);
-            margin-top: 6px;
-        }
-        .stat-card.accent-gold .stat-value {
-            color: var(--gold);
-        }
-        .stat-card.accent-green .stat-value {
-            color: var(--accent2);
-        }
-        .stat-card.accent-blue .stat-value {
-            color: var(--accent3);
-        }
-        .stat-card.accent-orange .stat-value {
-            color: var(--accent4);
-        }
+    .main-container {
+      max-width: 1400px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 24px;
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      grid-template-rows: auto auto;
+      gap: 20px;
+      flex: 1;
+    }
+    @media (max-width: 1000px) { .main-container { grid-template-columns: 1fr; } }
 
-        .panel {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 18px;
-        }
-        .panel h3 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 14px;
-            color: var(--gold);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .panel h3 svg {
-            width: 1.4rem;
-            height: 1.4rem;
-        }
+    .stats-row {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 14px;
+    }
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 16px;
+      text-align: center;
+    }
+    .stat-value { font-size: 2rem; font-weight: 800; }
+    .stat-label { font-size: 0.85rem; color: var(--text2); margin-top: 6px; }
+    .accent-gold .stat-value { color: var(--gold); }
+    .accent-green .stat-value { color: var(--accent2); }
+    .accent-blue .stat-value { color: var(--accent3); }
+    .accent-orange .stat-value { color: var(--accent4); }
 
-        /* جدول الجلسات */
-        .schedule-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
-        .schedule-table th,
-        .schedule-table td {
-            padding: 10px 12px;
-            text-align: right;
-            border-bottom: 1px solid var(--border);
-        }
-        .schedule-table th {
-            color: var(--text2);
-            font-weight: 600;
-            font-size: 0.85rem;
-        }
-        .schedule-table tbody tr {
-            transition: background 0.2s;
-        }
-        .schedule-table tbody tr:hover {
-            background: var(--surface2);
-        }
-        .schedule-table tbody tr.today-row {
-            background: #1a1a0a;
-            border-left: 3px solid var(--gold);
-        }
-        .schedule-table td.time-cell {
-            font-family: 'Courier New', monospace;
-            direction: ltr;
-            text-align: right;
-        }
-        .btn-icon {
-            background: transparent;
-            border: none;
-            color: var(--text);
-            cursor: pointer;
-            padding: 4px;
-            font-size: 1.1rem;
-            transition: var(--transition);
-        }
-        .btn-icon:hover {
-            color: var(--gold);
-        }
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+    }
+    .panel h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .panel h3 svg { width: 1.4rem; height: 1.4rem; stroke: currentColor; }
 
-        .add-session-form {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            align-items: flex-end;
-            margin-top: 16px;
-            padding-top: 14px;
-            border-top: 1px solid var(--border);
-        }
-        .add-session-form input,
-        .add-session-form select {
-            padding: 10px 14px;
-            border-radius: 25px;
-            border: 1px solid var(--border);
-            background: var(--surface2);
-            color: var(--text);
-            font-family: inherit;
-            font-size: 0.9rem;
-        }
-        .add-session-form input:focus,
-        .add-session-form select:focus {
-            outline: none;
-            border-color: var(--gold);
-        }
-        .add-session-form input {
-            flex: 1;
-            min-width: 150px;
-        }
+    .schedule-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    .schedule-table th, .schedule-table td {
+      padding: 12px 10px;
+      text-align: right;
+      border-bottom: 1px solid var(--border);
+    }
+    .schedule-table th { color: var(--text2); font-weight: 600; font-size: 0.85rem; background: var(--surface2); }
+    .schedule-table tbody tr { transition: background 0.15s; }
+    .schedule-table tbody tr:hover { background: #181818; }
+    .today-row { background: #1a1a0a; border-left: 3px solid var(--gold); }
+    .time-cell { font-family: 'Courier New', monospace; direction: ltr; }
 
-        .timer-display {
-            font-size: 3.5rem;
-            font-weight: 800;
-            font-family: 'Courier New', monospace;
-            color: var(--accent4);
-            margin: 8px 0;
-            text-align: center;
-        }
-        .timer-label {
-            font-size: 0.85rem;
-            color: var(--text2);
-            text-align: center;
-        }
-        .timer-controls {
-            display: flex;
-            gap: 8px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
+    .action-icon {
+      background: transparent;
+      border: none;
+      color: #999;
+      cursor: pointer;
+      padding: 4px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 0.2s, transform 0.2s;
+      border-radius: 50%;
+    }
+    .action-icon:hover { color: #fff; transform: scale(1.15); }
+    .action-icon svg { width: 18px; height: 18px; stroke: currentColor; fill: none; }
 
-        .progress-bar-wrap {
-            background: var(--surface3);
-            border-radius: 20px;
-            height: 10px;
-            overflow: hidden;
-            margin: 8px 0;
-        }
-        .progress-bar-fill {
-            height: 100%;
-            border-radius: 20px;
-            transition: width 0.5s ease;
-            background: linear-gradient(90deg, var(--accent2), #3ddc84);
-        }
+    .add-session-form {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+    .add-session-form input,
+    .add-session-form select {
+      padding: 10px 14px;
+      border-radius: 25px;
+      border: 1px solid var(--border);
+      background: var(--surface2);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.9rem;
+    }
+    .add-session-form input:focus,
+    .add-session-form select:focus { outline: none; border-color: var(--gold); }
+    .add-session-form input { flex: 1; min-width: 140px; }
 
-        ::-webkit-scrollbar {
-            width: 5px;
-        }
-        ::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #444;
-            border-radius: 10px;
-        }
-    </style>
+    .timer-display {
+      font-size: 3.5rem;
+      font-weight: 700;
+      font-family: 'Courier New', monospace;
+      color: var(--accent4);
+      margin: 12px 0;
+      text-align: center;
+      letter-spacing: -2px;
+    }
+    .timer-label { font-size: 0.85rem; color: var(--text2); text-align: center; }
+    .timer-controls { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+
+    .progress-bar-wrap { background: var(--surface3); border-radius: 20px; height: 8px; overflow: hidden; margin: 6px 0; }
+    .progress-bar-fill { height: 100%; border-radius: 20px; transition: width 0.4s; background: linear-gradient(90deg, var(--accent2), #3ddc84); }
+
+    @media (max-width: 600px) {
+      .app-header { padding: 12px 16px; }
+      .logo { font-size: 1.2rem; }
+      .timer-display { font-size: 2.5rem; }
+    }
+  </style>
 </head>
 <body>
-    <header class="app-header">
-        <div class="logo">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="3" y="4" width="18" height="18" rx="2" />
-                <line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" />
-                <line x1="3" y1="10" x2="21" y2="10" />
-            </svg>
-            <span>جدول المراجعة النهائية</span>
-        </div>
-        <button class="btn btn-sm btn-danger" onclick="clearAllSessions()">مسح الجدول</button>
-    </header>
+  <header class="app-header">
+    <div class="logo">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+        <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+      </svg>
+      <span>جدول المراجعة</span>
+    </div>
+    <button class="btn btn-sm btn-danger" onclick="clearAllSessions()">مسح الجدول</button>
+  </header>
 
-    <div class="main-container">
-        <!-- الإحصائيات -->
-        <div class="stats-row" id="statsRow">
-            <div class="stat-card accent-gold">
-                <div class="stat-value" id="statTotal">0</div>
-                <div class="stat-label">إجمالي الجلسات</div>
-            </div>
-            <div class="stat-card accent-green">
-                <div class="stat-value" id="statCompleted">0</div>
-                <div class="stat-label">جلسات مكتملة</div>
-            </div>
-            <div class="stat-card accent-blue">
-                <div class="stat-value" id="statPercent">0%</div>
-                <div class="stat-label">نسبة الإنجاز</div>
-            </div>
-            <div class="stat-card accent-orange">
-                <div class="stat-value" id="statHours">0</div>
-                <div class="stat-label">ساعات مخططة</div>
-            </div>
-        </div>
-
-        <!-- جدول الجلسات اليومي -->
-        <section class="panel" style="grid-column: 1;">
-            <h3>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect x="3" y="4" width="18" height="18" rx="2" /><line x1="16" y1="2" x2="16" y2="6" />
-                    <line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" />
-                </svg>
-                جدول المراجعة الأسبوعي
-            </h3>
-            <div style="overflow-x: auto;">
-                <table class="schedule-table" id="sessionsTable">
-                    <thead>
-                        <tr>
-                            <th>اليوم</th>
-                            <th>الوقت</th>
-                            <th>المادة</th>
-                            <th>الحالة</th>
-                            <th>إجراءات</th>
-                        </tr>
-                    </thead>
-                    <tbody id="sessionsBody"></tbody>
-                </table>
-            </div>
-            <div id="emptyMessage" style="text-align:center;padding:30px;color:var(--text2);">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <circle cx="12" cy="12" r="10" /><line x1="8" y1="12" x2="16" y2="12" />
-                </svg>
-                <p>لا توجد جلسات مراجعة حتى الآن. أضف واحدة أدناه.</p>
-            </div>
-            <div class="add-session-form">
-                <select id="sessionDay" required>
-                    <option value="السبت">السبت</option><option value="الأحد">الأحد</option>
-                    <option value="الاثنين">الاثنين</option><option value="الثلاثاء">الثلاثاء</option>
-                    <option value="الأربعاء">الأربعاء</option><option value="الخميس">الخميس</option>
-                    <option value="الجمعة">الجمعة</option>
-                </select>
-                <input type="time" id="sessionStart" value="08:00" required>
-                <span style="color:var(--text2);">إلى</span>
-                <input type="time" id="sessionEnd" value="10:00" required>
-                <input type="text" id="sessionSubject" placeholder="المادة (مثلاً: رياضيات)" required>
-                <button class="btn btn-primary btn-sm" onclick="addSession()">+ أضف جلسة</button>
-            </div>
-        </section>
-
-        <!-- الشريط الجانبي: مؤقت + إحصائيات المواد -->
-        <aside class="sidebar">
-            <div class="panel pomodoro-panel">
-                <h3>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
-                    مؤقت بومودورو
-                </h3>
-                <div class="timer-label" id="timerLabel">وقت الجلسة</div>
-                <div class="timer-display" id="timerDisplay">25:00</div>
-                <div class="timer-controls">
-                    <button class="btn btn-sm" id="timerStartBtn" onclick="toggleTimer()">▶ بدء</button>
-                    <button class="btn btn-sm" onclick="resetTimer()">↺ إعادة</button>
-                    <button class="btn btn-sm" onclick="setCustomTimer()">⏱ مخصص</button>
-                </div>
-            </div>
-
-            <div class="panel">
-                <h3>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10" /><line x1="12" y1="20" x2="12" y2="4" /><line x1="6" y1="20" x2="6" y2="14" /></svg>
-                    إحصائيات المواد
-                </h3>
-                <div id="subjectStats" style="color:var(--text2);">لا توجد بيانات</div>
-            </div>
-        </aside>
+  <div class="main-container">
+    <!-- الإحصائيات -->
+    <div class="stats-row">
+      <div class="stat-card accent-gold">
+        <div class="stat-value" id="statTotal">0</div>
+        <div class="stat-label">إجمالي الجلسات</div>
+      </div>
+      <div class="stat-card accent-green">
+        <div class="stat-value" id="statCompleted">0</div>
+        <div class="stat-label">مكتملة</div>
+      </div>
+      <div class="stat-card accent-blue">
+        <div class="stat-value" id="statPercent">0%</div>
+        <div class="stat-label">نسبة الإنجاز</div>
+      </div>
+      <div class="stat-card accent-orange">
+        <div class="stat-value" id="statHours">0</div>
+        <div class="stat-label">ساعات مخططة</div>
+      </div>
     </div>
 
-    <script>
-        (function() {
-            const STORAGE_KEY = 'morocco_study_schedule';
-            const TIMEZONE = 'Africa/Casablanca';
+    <!-- جدول الجلسات الأسبوعي -->
+    <section class="panel" style="overflow-x: auto;">
+      <h3>
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        الجدول الأسبوعي
+      </h3>
+      <table class="schedule-table" id="sessionsTable">
+        <thead>
+          <tr><th>اليوم</th><th>الوقت</th><th>المادة</th><th>الحالة</th><th>إجراءات</th></tr>
+        </thead>
+        <tbody id="sessionsBody"></tbody>
+      </table>
+      <div id="emptyMessage" style="text-align:center;padding:40px;color:var(--text2);">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <p>لا توجد جلسات بعد. أضف واحدة أدناه.</p>
+      </div>
+      <div class="add-session-form">
+        <select id="sessionDay">
+          <option>السبت</option><option>الأحد</option><option>الاثنين</option><option>الثلاثاء</option>
+          <option>الأربعاء</option><option>الخميس</option><option>الجمعة</option>
+        </select>
+        <input type="time" id="sessionStart" value="08:00" required>
+        <span style="color:var(--text2);margin:0 4px;">إلى</span>
+        <input type="time" id="sessionEnd" value="10:00" required>
+        <input type="text" id="sessionSubject" placeholder="اسم المادة" required>
+        <button class="btn btn-primary btn-sm" onclick="addSession()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          إضافة
+        </button>
+      </div>
+    </section>
 
-            // هيكل الجلسة: { id, day, start, end, subject, completed }
-            let sessions = [];
+    <!-- الشريط الجانبي: مؤقت + إحصائيات المواد -->
+    <aside style="display:flex;flex-direction:column;gap:16px;">
+      <div class="panel">
+        <h3>
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          مؤقت المراجعة
+        </h3>
+        <div class="timer-label" id="timerLabel">وقت مخصص</div>
+        <div class="timer-display" id="timerDisplay">25:00</div>
+        <div class="timer-controls">
+          <button class="btn btn-sm" id="timerStartBtn" onclick="toggleTimer()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            بدء
+          </button>
+          <button class="btn btn-sm" onclick="resetTimer()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+            إعادة
+          </button>
+          <button class="btn btn-sm" onclick="setCustomTimer()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            مخصص
+          </button>
+        </div>
+      </div>
 
-            // مؤقت بومودورو
-            let timerInterval = null;
-            let timerRunning = false;
-            let timerSeconds = 25 * 60;
-            let timerMode = 'custom'; // 'pomodoro' | 'custom'
+      <div class="panel">
+        <h3>
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          إحصائيات المواد
+        </h3>
+        <div id="subjectStats" style="color:var(--text2);">لا توجد بيانات</div>
+      </div>
+    </aside>
+  </div>
 
-            // ---------- دوال الوقت حسب المغرب ----------
-            function getMoroccoNow() {
-                const now = new Date();
-                // استخدام التوقيت المحلي للمغرب عبر Intl
-                const options = { timeZone: TIMEZONE, hour12: false };
-                const formatter = new Intl.DateTimeFormat('en-US', { ...options, year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' });
-                const parts = formatter.formatToParts(now);
-                const dateObj = {};
-                parts.forEach(p => { if (p.type !== 'literal') dateObj[p.type] = p.value; });
-                return new Date(`${dateObj.year}-${dateObj.month}-${dateObj.day}T${dateObj.hour}:${dateObj.minute}:${dateObj.second}`);
-            }
+  <script>
+    (function() {
+      const STORAGE_KEY = 'morocco_study_schedule';
+      let sessions = [];
 
-            function getTodayDayName() {
-                const days = ['الأحد', 'الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'];
-                const moroccoDate = getMoroccoNow();
-                return days[moroccoDate.getDay()];
-            }
+      // المؤقت
+      let timerInterval = null;
+      let timerRunning = false;
+      let timerSeconds = 25 * 60;
+      let timerMode = 'custom';
 
-            // ---------- تحميل / حفظ ----------
-            function loadSessions() {
-                const stored = localStorage.getItem(STORAGE_KEY);
-                if (stored) {
-                    try {
-                        sessions = JSON.parse(stored);
-                    } catch (e) {
-                        sessions = [];
-                    }
-                } else {
-                    sessions = [];
+      // التوقيت المغربي
+      function getMoroccoNow() {
+        const now = new Date();
+        const options = { timeZone: 'Africa/Casablanca', hour12: false };
+        const formatter = new Intl.DateTimeFormat('en-US', { ...options, year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        const parts = formatter.formatToParts(now);
+        const obj = {};
+        parts.forEach(p => { if (p.type !== 'literal') obj[p.type] = p.value; });
+        return new Date(`${obj.year}-${obj.month}-${obj.day}T${obj.hour}:${obj.minute}:${obj.second}`);
+      }
+
+      function getTodayDayName() {
+        const days = ['الأحد', 'الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'];
+        return days[getMoroccoNow().getDay()];
+      }
+
+      // تحميل / حفظ
+      function loadSessions() {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        sessions = stored ? JSON.parse(stored) : [];
+      }
+
+      function saveSessions() {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(sessions));
+      }
+
+      // عرض الجدول
+      function renderSessions() {
+        const tbody = document.getElementById('sessionsBody');
+        const emptyMsg = document.getElementById('emptyMessage');
+        if (!sessions.length) {
+          tbody.innerHTML = '';
+          emptyMsg.style.display = 'block';
+          return;
+        }
+        emptyMsg.style.display = 'none';
+        const todayDay = getTodayDayName();
+
+        tbody.innerHTML = sessions.map((s, idx) => {
+          const rowClass = s.day === todayDay ? 'today-row' : '';
+          const completed = s.completed;
+          // أيقونات SVG مخصصة لكل إجراء
+          const checkIcon = completed
+            ? `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent2)" stroke-width="2"><circle cx="12" cy="12" r="10" fill="none"/><path d="M9 12l2 2 4-4"/></svg>`
+            : `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" fill="none"/></svg>`;
+          return `
+            <tr class="${rowClass}">
+              <td>${s.day}${s.day === todayDay ? ' <span style="background:var(--gold);color:#000;padding:2px 8px;border-radius:12px;font-size:0.7rem;margin-right:6px;">اليوم</span>' : ''}</td>
+              <td class="time-cell">${s.start} – ${s.end}</td>
+              <td>${escapeHTML(s.subject)}</td>
+              <td>
+                <button class="action-icon" onclick="toggleComplete(${idx})" title="تبديل الحالة">
+                  ${checkIcon}
+                </button>
+              </td>
+              <td>
+                ${!completed ? `
+                  <button class="action-icon" onclick="startSessionTimer(${idx})" title="تشغيل مؤقت الجلسة">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                  </button>` : ''
                 }
+                <button class="action-icon" onclick="deleteSession(${idx})" title="حذف الجلسة">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                </button>
+              </td>
+            </tr>`;
+        }).join('');
+      }
+
+      function escapeHTML(str) {
+        const div = document.createElement('div');
+        div.textContent = str;
+        return div.innerHTML;
+      }
+
+      // الإحصائيات
+      function updateStats() {
+        const total = sessions.length;
+        const completed = sessions.filter(s => s.completed).length;
+        const percent = total ? Math.round((completed / total) * 100) : 0;
+        let totalHours = 0;
+        sessions.forEach(s => {
+          const [sh, sm] = s.start.split(':').map(Number);
+          const [eh, em] = s.end.split(':').map(Number);
+          totalHours += (eh + em/60) - (sh + sm/60);
+        });
+
+        document.getElementById('statTotal').textContent = total;
+        document.getElementById('statCompleted').textContent = completed;
+        document.getElementById('statPercent').textContent = percent + '%';
+        document.getElementById('statHours').textContent = totalHours.toFixed(1);
+
+        // إحصائيات المواد
+        const subjectMap = {};
+        sessions.forEach(s => {
+          if (!subjectMap[s.subject]) subjectMap[s.subject] = { total: 0, completed: 0 };
+          subjectMap[s.subject].total++;
+          if (s.completed) subjectMap[s.subject].completed++;
+        });
+        const div = document.getElementById('subjectStats');
+        if (!Object.keys(subjectMap).length) {
+          div.innerHTML = 'لا توجد بيانات';
+          return;
+        }
+        div.innerHTML = Object.entries(subjectMap).map(([subj, data]) => {
+          const pct = Math.round((data.completed / data.total) * 100) || 0;
+          return `
+            <div style="margin-bottom:12px;">
+              <div style="display:flex;justify-content:space-between;font-size:0.85rem;margin-bottom:4px;">
+                <span>${escapeHTML(subj)}</span>
+                <span>${data.completed}/${data.total}</span>
+              </div>
+              <div class="progress-bar-wrap" style="height:6px;">
+                <div class="progress-bar-fill" style="width:${pct}%; background:var(--accent5);"></div>
+              </div>
+            </div>`;
+        }).join('');
+      }
+
+      // إجراءات الجدول
+      window.addSession = function() {
+        const day = document.getElementById('sessionDay').value;
+        const start = document.getElementById('sessionStart').value;
+        const end = document.getElementById('sessionEnd').value;
+        const subject = document.getElementById('sessionSubject').value.trim();
+        if (!subject) return alert('الرجاء كتابة اسم المادة');
+        if (start >= end) return alert('وقت النهاية يجب أن يكون بعد البداية');
+        sessions.push({ id: Date.now(), day, start, end, subject, completed: false });
+        saveSessions();
+        document.getElementById('sessionSubject').value = '';
+        renderSessions();
+        updateStats();
+      };
+
+      window.deleteSession = function(idx) {
+        sessions.splice(idx, 1);
+        saveSessions();
+        renderSessions();
+        updateStats();
+      };
+
+      window.toggleComplete = function(idx) {
+        sessions[idx].completed = !sessions[idx].completed;
+        saveSessions();
+        renderSessions();
+        updateStats();
+      };
+
+      window.clearAllSessions = function() {
+        if (!confirm('هل تريد مسح جميع الجلسات؟')) return;
+        sessions = [];
+        saveSessions();
+        renderSessions();
+        updateStats();
+      };
+
+      // مؤقت بومودورو / مخصص
+      function updateTimerDisplay() {
+        const m = Math.floor(timerSeconds / 60);
+        const s = timerSeconds % 60;
+        document.getElementById('timerDisplay').textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+      }
+
+      window.toggleTimer = function() {
+        const btn = document.getElementById('timerStartBtn');
+        if (timerRunning) {
+          clearInterval(timerInterval);
+          timerRunning = false;
+          btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg> استئناف`;
+        } else {
+          timerInterval = setInterval(() => {
+            if (timerSeconds > 0) {
+              timerSeconds--;
+              updateTimerDisplay();
+            } else {
+              clearInterval(timerInterval);
+              timerRunning = false;
+              btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg> بدء`;
+              alert('انتهى الوقت!');
             }
+          }, 1000);
+          timerRunning = true;
+          btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg> إيقاف`;
+        }
+      };
 
-            function saveSessions() {
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(sessions));
-            }
+      window.resetTimer = function() {
+        clearInterval(timerInterval);
+        timerRunning = false;
+        document.getElementById('timerStartBtn').innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg> بدء`;
+        if (timerMode === 'pomodoro') timerSeconds = 25 * 60;
+        updateTimerDisplay();
+      };
 
-            // ---------- عرض الجدول ----------
-            function renderSessions() {
-                const tbody = document.getElementById('sessionsBody');
-                const emptyMsg = document.getElementById('emptyMessage');
-                if (!sessions.length) {
-                    tbody.innerHTML = '';
-                    emptyMsg.style.display = 'block';
-                    return;
-                }
-                emptyMsg.style.display = 'none';
-                const todayDay = getTodayDayName();
+      window.setCustomTimer = function() {
+        const mins = prompt('أدخل المدة بالدقائق:', '25');
+        if (!mins || isNaN(mins) || mins <= 0) return;
+        clearInterval(timerInterval);
+        timerRunning = false;
+        timerSeconds = parseInt(mins) * 60;
+        timerMode = 'custom';
+        document.getElementById('timerLabel').textContent = 'وقت مخصص';
+        document.getElementById('timerStartBtn').innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg> بدء`;
+        updateTimerDisplay();
+      };
 
-                tbody.innerHTML = sessions.map((s, idx) => {
-                    const rowClass = (s.day === todayDay) ? 'today-row' : '';
-                    const completedIcon = s.completed ? '✓' : '';
-                    const startTimerBtn = s.completed ? '' :
-                        `<button class="btn btn-xs" onclick="startSessionTimer(${idx})" title="ابدأ مؤقت الجلسة"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg></button>`;
-                    return `
-                <tr class="${rowClass}">
-                    <td>${s.day}</td>
-                    <td class="time-cell">${s.start} - ${s.end}</td>
-                    <td>${escapeHTML(s.subject)}</td>
-                    <td>
-                        <button class="btn-icon" onclick="toggleComplete(${idx})">
-                            ${s.completed ? '✅' : '⬜'}
-                        </button>
-                    </td>
-                    <td>
-                        ${startTimerBtn}
-                        <button class="btn-icon" onclick="deleteSession(${idx})" title="حذف">🗑️</button>
-                    </td>
-                </tr>`;
-                }).join('');
-            }
+      window.startSessionTimer = function(idx) {
+        const s = sessions[idx];
+        const [sh, sm] = s.start.split(':').map(Number);
+        const [eh, em] = s.end.split(':').map(Number);
+        const durationMin = (eh * 60 + em) - (sh * 60 + sm);
+        if (durationMin <= 0) return;
+        clearInterval(timerInterval);
+        timerRunning = false;
+        timerSeconds = durationMin * 60;
+        timerMode = 'custom';
+        document.getElementById('timerLabel').textContent = `مادة ${s.subject}`;
+        document.getElementById('timerStartBtn').innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg> إيقاف`;
+        updateTimerDisplay();
+        // بدء تلقائي
+        window.toggleTimer();
+      };
 
-            function escapeHTML(str) {
-                const div = document.createElement('div');
-                div.textContent = str;
-                return div.innerHTML;
-            }
+      // التحديث اليومي
+      function scheduleMidnightRefresh() {
+        const now = getMoroccoNow();
+        const midnight = new Date(now);
+        midnight.setHours(24,0,0,0);
+        const delay = midnight - now;
+        setTimeout(() => {
+          renderSessions();
+          scheduleMidnightRefresh();
+        }, delay + 1000);
+      }
 
-            function updateStats() {
-                const total = sessions.length;
-                const completed = sessions.filter(s => s.completed).length;
-                const percent = total ? Math.round((completed / total) * 100) : 0;
-                let totalHours = 0;
-                sessions.forEach(s => {
-                    const [sh, sm] = s.start.split(':').map(Number);
-                    const [eh, em] = s.end.split(':').map(Number);
-                    totalHours += (eh + em / 60) - (sh + sm / 60);
-                });
+      // التهيئة
+      function init() {
+        loadSessions();
+        renderSessions();
+        updateStats();
+        updateTimerDisplay();
+        scheduleMidnightRefresh();
+        setInterval(() => {
+          const today = getTodayDayName();
+          if (sessions.some(s => s.day === today)) renderSessions();
+        }, 60000);
+      }
 
-                document.getElementById('statTotal').textContent = total;
-                document.getElementById('statCompleted').textContent = completed;
-                document.getElementById('statPercent').textContent = percent + '%';
-                document.getElementById('statHours').textContent = totalHours.toFixed(1);
-
-                // إحصائيات المواد
-                const subjectMap = {};
-                sessions.forEach(s => {
-                    if (!subjectMap[s.subject]) subjectMap[s.subject] = { total: 0, completed: 0 };
-                    subjectMap[s.subject].total++;
-                    if (s.completed) subjectMap[s.subject].completed++;
-                });
-                const subjectStatsDiv = document.getElementById('subjectStats');
-                if (Object.keys(subjectMap).length === 0) {
-                    subjectStatsDiv.innerHTML = 'لا توجد بيانات';
-                    return;
-                }
-                subjectStatsDiv.innerHTML = Object.entries(subjectMap).map(([subj, data]) => {
-                    const pct = Math.round((data.completed / data.total) * 100) || 0;
-                    return `
-                    <div style="margin-bottom:10px;">
-                        <div style="display:flex;justify-content:space-between;font-size:0.85rem;">
-                            <span>${escapeHTML(subj)}</span>
-                            <span>${data.completed}/${data.total}</span>
-                        </div>
-                        <div class="progress-bar-wrap" style="height:6px;">
-                            <div class="progress-bar-fill" style="width:${pct}%; background:var(--accent5);"></div>
-                        </div>
-                    </div>`;
-                }).join('');
-            }
-
-            // ---------- إجراءات الجدول ----------
-            function addSession() {
-                const day = document.getElementById('sessionDay').value;
-                const start = document.getElementById('sessionStart').value;
-                const end = document.getElementById('sessionEnd').value;
-                const subject = document.getElementById('sessionSubject').value.trim();
-                if (!subject) {
-                    alert('الرجاء كتابة اسم المادة');
-                    return;
-                }
-                if (start >= end) {
-                    alert('وقت النهاية يجب أن يكون بعد وقت البداية');
-                    return;
-                }
-                sessions.push({
-                    id: Date.now(),
-                    day,
-                    start,
-                    end,
-                    subject,
-                    completed: false
-                });
-                saveSessions();
-                document.getElementById('sessionSubject').value = '';
-                renderSessions();
-                updateStats();
-            }
-
-            function deleteSession(index) {
-                sessions.splice(index, 1);
-                saveSessions();
-                renderSessions();
-                updateStats();
-            }
-
-            function toggleComplete(index) {
-                sessions[index].completed = !sessions[index].completed;
-                saveSessions();
-                renderSessions();
-                updateStats();
-            }
-
-            function clearAllSessions() {
-                if (!confirm('هل أنت متأكد من مسح جميع الجلسات؟')) return;
-                sessions = [];
-                saveSessions();
-                renderSessions();
-                updateStats();
-            }
-
-            // ---------- المؤقت ----------
-            function updateTimerDisplay() {
-                const mins = Math.floor(timerSeconds / 60);
-                const secs = timerSeconds % 60;
-                document.getElementById('timerDisplay').textContent =
-                    `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
-            }
-
-            function toggleTimer() {
-                const btn = document.getElementById('timerStartBtn');
-                if (timerRunning) {
-                    clearInterval(timerInterval);
-                    timerRunning = false;
-                    btn.textContent = '▶ استئناف';
-                } else {
-                    timerInterval = setInterval(() => {
-                        if (timerSeconds > 0) {
-                            timerSeconds--;
-                            updateTimerDisplay();
-                        } else {
-                            clearInterval(timerInterval);
-                            timerRunning = false;
-                            btn.textContent = '▶ بدء';
-                            alert('انتهى الوقت!');
-                        }
-                    }, 1000);
-                    timerRunning = true;
-                    btn.textContent = '⏸ إيقاف';
-                }
-            }
-
-            function resetTimer() {
-                clearInterval(timerInterval);
-                timerRunning = false;
-                document.getElementById('timerStartBtn').textContent = '▶ بدء';
-                if (timerMode === 'pomodoro') {
-                    timerSeconds = 25 * 60;
-                }
-                updateTimerDisplay();
-            }
-
-            function setCustomTimer() {
-                const mins = prompt('أدخل المدة بالدقائق:', '25');
-                if (!mins || isNaN(mins) || mins <= 0) return;
-                clearInterval(timerInterval);
-                timerRunning = false;
-                timerSeconds = parseInt(mins) * 60;
-                timerMode = 'custom';
-                document.getElementById('timerLabel').textContent = 'وقت مخصص';
-                document.getElementById('timerStartBtn').textContent = '▶ بدء';
-                updateTimerDisplay();
-            }
-
-            window.startSessionTimer = function(index) {
-                const session = sessions[index];
-                const [sh, sm] = session.start.split(':').map(Number);
-                const [eh, em] = session.end.split(':').map(Number);
-                const durationMin = (eh * 60 + em) - (sh * 60 + sm);
-                if (durationMin <= 0) return;
-                clearInterval(timerInterval);
-                timerRunning = false;
-                timerSeconds = durationMin * 60;
-                timerMode = 'custom';
-                document.getElementById('timerLabel').textContent = `جلسة ${session.subject}`;
-                document.getElementById('timerStartBtn').textContent = '▶ بدء';
-                updateTimerDisplay();
-                // بدء تلقائي
-                toggleTimer();
-            };
-
-            // ---------- التحديث اليومي حسب المغرب ----------
-            function checkDayChange() {
-                const today = getTodayDayName();
-                // نعيد عرض الجدول لتحديث صفوف اليوم
-                renderSessions();
-                // إعادة التحقق عند منتصف الليل بتوقيت المغرب
-                scheduleMidnightRefresh();
-            }
-
-            function scheduleMidnightRefresh() {
-                const now = getMoroccoNow();
-                const midnight = new Date(now);
-                midnight.setHours(24, 0, 0, 0);
-                const msUntilMidnight = midnight - now;
-                setTimeout(() => {
-                    renderSessions();
-                    scheduleMidnightRefresh();
-                }, msUntilMidnight + 1000); // ثانية إضافية للضمان
-            }
-
-            // ---------- البدء ----------
-            function init() {
-                loadSessions();
-                renderSessions();
-                updateStats();
-                updateTimerDisplay();
-                scheduleMidnightRefresh();
-                // فحص التغيير كل دقيقة احتياطاً
-                setInterval(() => {
-                    const today = getTodayDayName();
-                    const highlighted = document.querySelectorAll('.today-row');
-                    if (highlighted.length === 0 && sessions.some(s => s.day === today)) {
-                        renderSessions();
-                    }
-                }, 60000);
-            }
-
-            // جعل الدوال متاحة في النطاق العام
-            window.addSession = addSession;
-            window.deleteSession = deleteSession;
-            window.toggleComplete = toggleComplete;
-            window.clearAllSessions = clearAllSessions;
-            window.toggleTimer = toggleTimer;
-            window.resetTimer = resetTimer;
-            window.setCustomTimer = setCustomTimer;
-
-            document.addEventListener('DOMContentLoaded', init);
-        })();
-    </script>
+      document.addEventListener('DOMContentLoaded', init);
+    })();
+  </script>
 </body>
 </html>
